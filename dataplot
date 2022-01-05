@@ -1,0 +1,44 @@
+import numpy as np  #수치계산위함
+from matplotlib import pyplot as plt #그래프,그림
+import seaborn as sns 
+import warnings
+warnings.filterwarnings('ignore')
+
+#데이터 생상 : 입력과 결과를 모두 가지고 있는 데이터를 생성
+np.random.randn(10,2) #랜덤데이터생성
+
+center_1=np.array([1,1]) #중심점
+data = np.random.randn(10,2) + center_1 #평행이동??
+print(data)
+
+cluster = np.ones(10) #ones라는 임의의 라벨을 정해서 cluster로 저장
+print(cluster)
+
+plt.scatter(data[:,0], data[:,1])
+plt.scatter(center_1[0],center_1[1], marker = '*',c='r',s=100)
+#1,1을 기준으로 데이터가 분포
+
+center_2 = np.array([5,5]) #5일때 중심점
+data = np.concatenate((data, np.random.randn(10,2)+center_2)) 
+#data라는변수 앞서 이미 사용함, 거기에 이어서 다른값들도 붙여주기위해 concatenate함수사용
+print(data)
+
+cluster = np.concatenate((cluster, 2*np.ones(10))) #2라는 동일한 값 지정
+print(cluster)
+
+plt.scatter(data[:,0],data[:,1])
+plt.scatter(center_1[0], center_1[1], marker='*',c='r',s=100)
+plt.scatter(center_2[0],center_2[1], marker='*',c='g',s=100)
+#1,1과 5,5 를 중심으로 데이터가 분포된 모습
+
+center_3 = np.array([8,1])
+data = np.concatenate((data, np.random.randn(10,2)+center_3))
+print(data)
+
+cluster = np.concatenate((cluster, 3*np.ones(10)))
+print(cluster)
+
+plt.scatter(data[:,0],data[:,1])
+plt.scatter(center_1[0], center_1[1], marker='*',c='r',s=100)
+plt.scatter(center_2[0],center_2[1], marker='*',c='g',s=100)
+plt.scatter(center_3[0],center_3[1], marker='*',c='b',s=100)
